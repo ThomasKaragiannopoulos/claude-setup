@@ -1,0 +1,67 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(curl:*)",
+      "WebSearch",
+      "Skill(update-config)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(claude plugin:*)",
+      "Bash(gh api:*)",
+      "WebFetch(domain:api.github.com)",
+      "mcp__codebase-memory-mcp__index_status",
+      "mcp__codebase-memory-mcp__get_architecture",
+      "mcp__codebase-memory-mcp__list_projects",
+      "mcp__codebase-memory-mcp__search_graph",
+      "mcp__codebase-memory-mcp__get_code_snippet"
+    ],
+    "defaultMode": "default"
+  },
+  "model": "sonnet",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Grep|Glob|Read|Search",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/cbm-code-discovery-gate"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [{ "type": "command", "command": "~/.claude/hooks/cbm-session-reminder" }]
+      },
+      {
+        "matcher": "resume",
+        "hooks": [{ "type": "command", "command": "~/.claude/hooks/cbm-session-reminder" }]
+      },
+      {
+        "matcher": "clear",
+        "hooks": [{ "type": "command", "command": "~/.claude/hooks/cbm-session-reminder" }]
+      },
+      {
+        "matcher": "compact",
+        "hooks": [{ "type": "command", "command": "~/.claude/hooks/cbm-session-reminder" }]
+      }
+    ]
+  },
+  "autoMemoryDirectory": "REPLACE_WITH_VAULT_PATH/Claude/Memory",
+  "skipDangerousModePermissionPrompt": true,
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "claude-mem@thedotmack": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": { "source": "github", "repo": "JuliusBrussee/caveman" }
+    },
+    "thedotmack": {
+      "source": { "source": "github", "repo": "thedotmack/claude-mem" }
+    }
+  }
+}

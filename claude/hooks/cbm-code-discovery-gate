@@ -1,0 +1,27 @@
+#!/bin/bash
+# Gate hook: nudges Claude toward codebase-memory-mcp for code discovery.
+# First Grep/Glob/Read/Search per session -> block. Subsequent -> allow.
+# Skips .md files and memory/docs paths — those aren't code discovery.
+# PPID = Claude Code process PID, unique per session.
+GATE=/tmp/cbm-code-discovery-gate-$PPID
+find /tmp -name 'cbm-code-discovery-gate-*' -mtime +1 -delete 2>/dev/null
+
+# Read stdin to check if this is a non-code file
+INPUT=$(cat 2>/dev/null || true)
+FILE_PATH=$(echo "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('file_path','') or d.get('pattern','') or '')" 2>/dev/null || echo "")
+
+# Skip gate for markdown, memory files, and known non-code paths
+if [[ "$FILE_PATH" == *.md ]] || \
+   [[ "$FILE_PATH" == *.txt ]] || \
+   [[ "$FILE_PATH" == *Memory* ]] || \
+   [[ "$FILE_PATH" == *CLAUDE.md* ]] || \
+   [[ "$FILE_PATH" == *settings.json* ]]; then
+    exit 0
+fi
+
+if [ -f "$GATE" ]; then
+    exit 0
+fi
+touch "$GATE"
+echo 'BLOCKED: For code discovery, use codebase-memory-mcp tools first: search_graph(name_pattern) to find functions/classes, trace_path() for call chains, get_code_snippet(qualified_name) to read source. If the graph is not indexed yet, call index_repository first. Fall back to Grep/Glob/Read only for text content search. If you need Grep, retry.' >&2
+exit 2

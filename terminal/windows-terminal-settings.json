@@ -1,0 +1,135 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "keybindings": [
+        { "id": "Terminal.CopyToClipboard", "keys": "ctrl+c" },
+        { "id": "Terminal.PasteFromClipboard", "keys": "ctrl+v" },
+        { "id": "Terminal.FindText", "keys": "ctrl+shift+f" },
+        { "id": "Terminal.DuplicatePaneAuto", "keys": "alt+shift+d" }
+    ],
+    "newTabMenu": [{ "type": "remainingProfiles" }],
+    "profiles": {
+        "defaults": {},
+        "list": [
+            {
+                "colorScheme": "RetroNeonGreen",
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "cursorColor": "#00FF00",
+                "cursorShape": "vintage",
+                "font": { "face": "Cascadia Code", "weight": "normal" },
+                "foreground": "#00FF41",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell",
+                "opacity": 100,
+                "selectionBackground": "#003B00",
+                "useAcrylic": false
+            },
+            {
+                "colorScheme": "linuxarchcolors",
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "cursorColor": "#1793D1",
+                "cursorShape": "vintage",
+                "font": { "face": "Cascadia Code", "weight": "normal" },
+                "foreground": "#FFFFFF",
+                "guid": "{c1a0d3e5-f7b9-4a2c-8e6d-001122334455}",
+                "hidden": false,
+                "name": "Claude",
+                "selectionBackground": "#1793D1"
+            },
+            {
+                "colorScheme": "RetroNeonGreen",
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "cursorColor": "#00FF41",
+                "cursorShape": "vintage",
+                "experimental.retroTerminalEffect": false,
+                "font": { "colorGlyphs": false },
+                "foreground": "#00FF41",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "intenseTextStyle": "all",
+                "name": "Command Prompt",
+                "selectionBackground": "#00FF00"
+            }
+        ]
+    },
+    "schemes": [
+        {
+            "background": "#000000", "black": "#000000", "blue": "#00A550",
+            "brightBlack": "#C8FFC8", "brightBlue": "#00FF41", "brightCyan": "#39FF14",
+            "brightGreen": "#00FF41", "brightPurple": "#00CC33", "brightRed": "#33FF33",
+            "brightWhite": "#CCFFCC", "brightYellow": "#80FF00", "cursorColor": "#00FF41",
+            "cyan": "#00CC33", "foreground": "#00FF41", "green": "#00FF41",
+            "name": "RetroNeonGreen", "purple": "#008F11", "red": "#33FF33",
+            "selectionBackground": "#003B00", "white": "#00FF41", "yellow": "#39FF14"
+        },
+        {
+            "background": "#0D1117", "black": "#0D1117", "blue": "#1793D1",
+            "brightBlack": "#3A3A5C", "brightBlue": "#5BC8F5", "brightCyan": "#87CEEB",
+            "brightGreen": "#FFFFFF", "brightPurple": "#4A90D9", "brightRed": "#5BC8F5",
+            "brightWhite": "#FFFFFF", "brightYellow": "#87CEEB", "cursorColor": "#1793D1",
+            "cyan": "#4A90D9", "foreground": "#FFFFFF", "green": "#5BC8F5",
+            "name": "linuxarchcolors", "purple": "#1793D1", "red": "#5BC8F5",
+            "selectionBackground": "#1793D1", "white": "#FFFFFF", "yellow": "#87CEEB"
+        },
+        {
+            "background": "#000000", "black": "#000000", "blue": "#8B0000",
+            "brightBlack": "#1A0000", "brightBlue": "#FF1744", "brightCyan": "#FF4466",
+            "brightGreen": "#FF0033", "brightPurple": "#FF0055", "brightRed": "#FF4444",
+            "brightWhite": "#FF8888", "brightYellow": "#FF2233", "cursorColor": "#FF0033",
+            "cyan": "#CC0022", "foreground": "#FF0033", "green": "#FF1744",
+            "name": "BloodMatrix", "purple": "#6B0000", "red": "#FF0000",
+            "selectionBackground": "#2A0000", "white": "#CC0000", "yellow": "#AA0000"
+        },
+        {
+            "background": "#0A0A0C", "black": "#0A0A0C", "blue": "#4A6A8A",
+            "brightBlack": "#1E1E22", "brightBlue": "#6A8FAA", "brightCyan": "#7AAABB",
+            "brightGreen": "#C8C8D0", "brightPurple": "#5A7A9A", "brightRed": "#AAAAB4",
+            "brightWhite": "#E8E8F0", "brightYellow": "#8899AA", "cursorColor": "#6A8FAA",
+            "cyan": "#3A5A70", "foreground": "#C8C8D0", "green": "#7A8A9A",
+            "name": "Ghost", "purple": "#3A5570", "red": "#8899AA",
+            "selectionBackground": "#1A2030", "white": "#C8C8D0", "yellow": "#7A8A9A"
+        },
+        {
+            "background": "#05000A", "black": "#05000A", "blue": "#00FFFF",
+            "brightBlack": "#1A0028", "brightBlue": "#40FFFF", "brightCyan": "#00FFFF",
+            "brightGreen": "#FF00FF", "brightPurple": "#FF40FF", "brightRed": "#FF00CC",
+            "brightWhite": "#FFFFFF", "brightYellow": "#CC00FF", "cursorColor": "#FF00FF",
+            "cyan": "#00CCCC", "foreground": "#FF00FF", "green": "#00DDDD",
+            "name": "Corrupted", "purple": "#CC00CC", "red": "#FF00CC",
+            "selectionBackground": "#2A0040", "white": "#FF80FF", "yellow": "#00FFFF"
+        },
+        {
+            "background": "#000000", "black": "#000000", "blue": "#CC0000",
+            "brightBlack": "#1A1A1A", "brightBlue": "#FF1111", "brightCyan": "#FF3333",
+            "brightGreen": "#FFFFFF", "brightPurple": "#CC0000", "brightRed": "#FF0000",
+            "brightWhite": "#FFFFFF", "brightYellow": "#FF1111", "cursorColor": "#FF0000",
+            "cyan": "#990000", "foreground": "#FFFFFF", "green": "#CCCCCC",
+            "name": "Killswitch", "purple": "#880000", "red": "#FF0000",
+            "selectionBackground": "#330000", "white": "#FFFFFF", "yellow": "#CC0000"
+        },
+        {
+            "background": "#060A09", "black": "#060A09", "blue": "#00FFCC",
+            "brightBlack": "#1A2E2A", "brightBlue": "#00FFD4", "brightCyan": "#40FFE0",
+            "brightGreen": "#FFFFFF", "brightPurple": "#00CCA8", "brightRed": "#FFFFFF",
+            "brightWhite": "#FFFFFF", "brightYellow": "#00FFD4", "cursorColor": "#00FFCC",
+            "cyan": "#00BFA0", "foreground": "#EEFFFA", "green": "#00FFCC",
+            "name": "HexDump", "purple": "#008C74", "red": "#AAFFEE",
+            "selectionBackground": "#003328", "white": "#EEFFFA", "yellow": "#00FFD4"
+        },
+        {
+            "background": "#080810", "black": "#080810", "blue": "#00B4FF",
+            "brightBlack": "#2A2A3A", "brightBlue": "#5CD8FF", "brightCyan": "#FFFFFF",
+            "brightGreen": "#B0C8FF", "brightPurple": "#00B4FF", "brightRed": "#C0C0D0",
+            "brightWhite": "#FFFFFF", "brightYellow": "#5CD8FF", "cursorColor": "#00B4FF",
+            "cyan": "#3A9FD8", "foreground": "#D8D8E8", "green": "#7090C0",
+            "name": "Static", "purple": "#2060A0", "red": "#8899AA",
+            "selectionBackground": "#0A2A4A", "white": "#D8D8E8", "yellow": "#3A9FD8"
+        }
+    ],
+    "themes": []
+}

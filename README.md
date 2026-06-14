@@ -35,7 +35,7 @@ Install these before running setup. Claude will explain each one when you run "s
 ### Claude Code config (`~/.claude/`)
 | File | Purpose |
 |---|---|
-| `CLAUDE.md` | Global instructions — memory-first, minimal diffs, no co-author commits |
+| `CLAUDE.md` | Global instructions — memory-first, minimal diffs, no co-author commits. Merged with [Karpathy's coding guidelines](https://github.com/multica-ai/andrej-karpathy-skills). |
 | `settings.json` | Model (sonnet), plugins, MCP hooks, autoMemoryDirectory |
 | `hooks/cbm-session-reminder` | Reminds Claude to use codebase-memory-mcp on every session start |
 | `hooks/cbm-code-discovery-gate` | Blocks raw file reads on first use per session, nudges toward graph tools |

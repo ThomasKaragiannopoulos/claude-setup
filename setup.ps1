@@ -1,5 +1,7 @@
 # Claude Code + Windows Terminal setup script
 # Run from repo root. Idempotent — safe to re-run.
+# Re-running OVERWRITES: ~/.claude/CLAUDE.md, settings.json, hooks/, PowerShell profile, Windows Terminal settings, VS Code settings.
+# See CLAUDE.md for manual steps after this script completes.
 
 $ErrorActionPreference = "Stop"
 $REPO = Split-Path -Parent $MyInvocation.MyCommand.Definition
@@ -38,6 +40,17 @@ if (!(Test-Path $wtPath)) {
 }
 
 Write-Host ""
+Write-Host "This will OVERWRITE: ~/.claude/CLAUDE.md, settings.json, hooks/, PowerShell profile" -ForegroundColor Yellow
+if (Test-Path $wtPath) { Write-Host "                      Windows Terminal settings.json" -ForegroundColor Yellow }
+$vsCodeSettings = "$env:APPDATA\Code\User\settings.json"
+if (Test-Path (Split-Path $vsCodeSettings)) { Write-Host "                      VS Code settings.json" -ForegroundColor Yellow }
+Write-Host ""
+$confirm = Read-Host "Continue? [y/N]"
+if ($confirm -notmatch '^[Yy]') {
+    Write-Host "Aborted." -ForegroundColor Red
+    exit 0
+}
+Write-Host ""
 
 # ── 1. Claude config ────────────────────────────────────────────────────────
 
@@ -49,7 +62,14 @@ Info "Copying settings.json"
 $settingsDest = "$HOME\.claude\settings.json"
 Copy-Item "$REPO\claude\settings.json" $settingsDest -Force
 Ok "~/.claude/settings.json"
-Write-Host "   NOTE: Set autoMemoryDirectory in $settingsDest to your Obsidian vault path" -ForegroundColor Yellow
+$vaultPath = Read-Host "   Enter your Obsidian vault path (e.g. C:\Users\you\Documents\Obsidian) — leave blank to set manually later"
+if ($vaultPath) {
+    $vaultPathFwd = $vaultPath.Replace('\', '/')
+    (Get-Content $settingsDest -Raw) -replace 'REPLACE_WITH_VAULT_PATH', $vaultPathFwd | Set-Content $settingsDest -NoNewline
+    Ok "autoMemoryDirectory => $vaultPathFwd/Claude/Memory"
+} else {
+    Warn "autoMemoryDirectory not set — edit $settingsDest manually (replace REPLACE_WITH_VAULT_PATH)"
+}
 
 Info "Copying hooks"
 $hooksDir = "$HOME\.claude\hooks"
@@ -97,8 +117,11 @@ Write-Host ""
 Write-Host "Setup complete." -ForegroundColor Green
 Write-Host ""
 Write-Host "Remaining manual steps:" -ForegroundColor Yellow
-Write-Host "  1. Set autoMemoryDirectory in ~/.claude/settings.json to your Obsidian vault path"
-Write-Host "  2. claude plugin install caveman@caveman"
-Write-Host "  3. npx claude-mem install"
-Write-Host "  4. Install codebase-memory-mcp (see CLAUDE.md)"
-Write-Host "  5. Restart terminal"
+Write-Host "  1. claude plugin install caveman@caveman"
+Write-Host "  2. npx claude-mem install"
+Write-Host "  3. Install codebase-memory-mcp (see CLAUDE.md)"
+Write-Host "  4. Restart terminal"
+if (!$vaultPath) {
+    Write-Host ""
+    Write-Host "  ALSO: Set autoMemoryDirectory in ~/.claude/settings.json to your Obsidian vault path" -ForegroundColor Yellow
+}

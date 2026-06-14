@@ -3,6 +3,13 @@
 New machine? Clone this repo, cd into it, open Claude, and say **"set yourself up"**.
 Claude will read `CLAUDE.md`, explain what each prerequisite is, check what's missing, run `setup.ps1`, and walk you through the rest.
 
+> [!WARNING]
+> **Review before running.** `setup.ps1` overwrites existing configs without backup:
+> `~/.claude/CLAUDE.md`, `~/.claude/settings.json`, your PowerShell profile,
+> Windows Terminal `settings.json`, and VS Code `settings.json`.
+> If you have customizations in any of these, back them up first.
+> The script is safe to re-run — it will overwrite with repo versions each time.
+
 ---
 
 ## Prerequisites
